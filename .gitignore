@@ -4,3 +4,4 @@ dist/
 *.tmp
 *.bak
 SHA256SUMS.txt
+verify.bat

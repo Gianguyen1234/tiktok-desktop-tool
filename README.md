@@ -88,6 +88,23 @@ Windows builds currently produce:
 
 The checksum file is provided so anyone can verify that a downloaded binary matches the published release artifact.
 
+## Verifying Downloads
+
+Each release can include:
+
+- the Windows setup file
+- the Windows portable file
+- `SHA256SUMS.txt`
+- `verify.bat`
+
+To verify downloaded files:
+
+1. Put `verify.bat`, `SHA256SUMS.txt`, and the downloaded `.exe` files in the same folder.
+2. Run `verify.bat`.
+3. Confirm that both files return `[OK]`.
+
+If a file returns `[FAIL]` or `[MISSING]`, do not trust that download until the problem is resolved.
+
 ## License
 
 This project is licensed under the `MIT` License. See [LICENSE](/G:/tiktok-desktop-tool/LICENSE).
