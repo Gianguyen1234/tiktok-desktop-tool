@@ -1,2 +1,0 @@
-1cd0e60a3a73db7ba2e2559bfc2d54dbb313f4652c842ccaa32a266d83db878e *TikTok Music Tool-1.0.0-win-x64-setup.exe
-e2c67fca993830afcd1edf821f241e4cf9f81b2cb1014ccaac5e03abb216218d *TikTok Music Tool-1.0.0-win-x64-portable.exe
