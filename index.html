@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TikTok Music Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="eyebrow">Open-source desktop concept</div>
+        <h1>TikTok Music Tool</h1>
+        <p>Listen in a dedicated app, keep playback active, and download audio or video from a TikTok post.</p>
+      </div>
+
+      <section class="panel">
+        <div class="panel-title">Playback</div>
+        <label class="field">
+          <span>Volume</span>
+          <div class="volume-row">
+            <input id="volume-slider" type="range" min="0" max="100" step="1" value="100" />
+            <input id="volume-number" type="number" min="0" max="100" step="1" value="100" />
+          </div>
+        </label>
+        <label class="toggle">
+          <input id="background-play" type="checkbox" checked />
+          <span>Keep audio playing when the app loses focus</span>
+        </label>
+        <div id="playback-status" class="status muted">Ready</div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">Downloader</div>
+        <label class="field">
+          <span>TikTok post URL</span>
+          <input id="download-url" type="text" placeholder="https://www.tiktok.com/@user/video/123" />
+        </label>
+        <button id="fetch-url">Fetch Download Options</button>
+        <div id="download-status" class="status muted">Paste a TikTok post URL to load MP3 and video options.</div>
+        <div id="download-meta" class="meta"></div>
+        <div id="download-results" class="results"></div>
+      </section>
+    </aside>
+
+    <main class="viewer-shell">
+      <header class="viewer-toolbar">
+        <input id="viewer-url" type="text" value="https://www.tiktok.com" />
+        <button id="open-url">Open</button>
+        <div id="viewer-status" class="status good">Viewer ready</div>
+      </header>
+      <div class="viewer-frame">
+        <webview id="tiktok-view" src="https://www.tiktok.com" allowpopups></webview>
+      </div>
+    </main>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
