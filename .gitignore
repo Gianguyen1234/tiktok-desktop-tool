@@ -3,3 +3,4 @@ dist/
 *.log
 *.tmp
 *.bak
+SHA256SUMS.txt

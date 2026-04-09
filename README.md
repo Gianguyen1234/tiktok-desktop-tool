@@ -1,45 +1,48 @@
 # TikTok Music Tool
 
-A lightweight desktop app for opening TikTok in a dedicated window, keeping playback active when the app loses focus, and downloading MP3 audio or video from a TikTok post URL.
+TikTok Music Tool is a desktop app for listening to TikTok audio in a dedicated window and downloading available media from a TikTok post URL.
 
-## Features
+## What It Does
 
-- Dedicated TikTok desktop viewer
-- Background playback toggle
-- Volume control from `0` to `100`
-- Download options for:
+- Opens TikTok in a standalone desktop viewer
+- Keeps playback active when the app loses focus
+- Lets you control playback volume from `0` to `100`
+- Fetches download options for:
   - `MP3` audio
   - `HD` video
   - `No watermark` video
-  - image posts when the provider returns them
+  - image posts when available
 
-## Current Architecture
+## How It Works
 
-- `Electron` desktop shell
-- `webview` for TikTok
-- injected page script for playback behavior
-- main-process downloader bridge
-- provider-based download fetch, currently using `tikwm`
+This project uses:
 
-## Security Model
+- `Electron` for the desktop shell
+- an embedded `webview` for TikTok
+- a small injected script for playback behavior
+- a main-process download bridge for saving files locally
 
-This app is safer than installing a random browser extension only if the code and release process stay transparent.
+The current downloader provider is `tikwm`.
 
-Current constraints:
+## Security And Transparency
+
+This project is open source so people can inspect how it works before running it.
+
+Current behavior:
 
 - `contextIsolation` is enabled
 - `nodeIntegration` is disabled
-- file downloads happen in the Electron main process
-- the renderer only gets a narrow preload bridge
-- the app opens external links in the system browser
+- downloads are handled in the Electron main process
+- the renderer only accesses a limited preload bridge
+- external links open in the system browser
 
-Current trust boundary:
+Current trust boundaries:
 
-- the downloader depends on `https://tikwm.com/api/`
-- TikTok can change page behavior at any time
-- this is not a security product and should not be marketed as malware-proof or virus-proof
+- media download options currently depend on `https://tikwm.com/api/`
+- TikTok can change its page structure or behavior at any time
+- this is a convenience app, not a security product
 
-## Development
+## Running Locally
 
 Install dependencies:
 
@@ -47,21 +50,21 @@ Install dependencies:
 npm install
 ```
 
-Run the app:
+Start the app:
 
 ```powershell
 npm start
 ```
 
-## Packaging
+## Building
 
-Create unpacked output:
+Create an unpacked build:
 
 ```powershell
 npm run pack
 ```
 
-Create Windows installer and portable build:
+Create Windows release files:
 
 ```powershell
 npm run dist:win
@@ -73,31 +76,18 @@ General distribution build:
 npm run dist
 ```
 
-Build output goes to `dist/`.
+Build output is written to `dist/`.
 
-## Publishing To GitHub
+## Release Files
 
-Recommended release flow:
+Windows builds currently produce:
 
-1. Push source code to a public GitHub repository.
-2. Run `npm run dist:win`.
-3. Upload the generated files from `dist/` to a GitHub Release.
-4. Publish SHA256 checksums alongside the binaries.
-5. Document exactly which external services the app calls.
-
-Recommended files for a release:
-
-- Windows installer (`nsis`)
-- portable executable
+- `TikTok Music Tool-<version>-win-x64-setup.exe`
+- `TikTok Music Tool-<version>-win-x64-portable.exe`
 - `SHA256SUMS.txt`
-- release notes
 
-## Open Source Notes
+The checksum file is provided so anyone can verify that a downloaded binary matches the published release artifact.
 
-Before publishing broadly, you should still add:
+## License
 
-- a license file such as `MIT`
-- screenshots
-- a privacy note
-- a small changelog
-- optional code signing for Windows releases
+This project is licensed under the `MIT` License. See [LICENSE](/G:/tiktok-desktop-tool/LICENSE).
